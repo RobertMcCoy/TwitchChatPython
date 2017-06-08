@@ -16,14 +16,14 @@ class Channel(threading.Thread):
         self.thread_id = thread_id
         self.name = name
         self.streamers = channels
-        self.irc = setup_connection(self.streamers, self.thread_id, self.name)
+        self.irc = setup_connection(self.streamers)
 
     def run(self):
-        handle_messages(self.irc, self.thread_id, self.name)
+        handle_messages(self.irc)
         print("Channel thread ending: %s - %s" % (self.thread_id, self.name))
 
 
-def setup_connection(channels, thread_id, name):
+def setup_connection(channels):
     irc = socket.socket()
     irc.connect((server, port))
     irc.send(bytes("NICK %s\r\n" % nick, "UTF-8"))
