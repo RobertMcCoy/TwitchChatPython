@@ -44,7 +44,7 @@ def handle_messages(irc):
                 line = str.split(line)
                 if line[0] == "PING":
                     irc.send(bytes("PONG %s\r\n" % line[1], "UTF-8"))
-                if line[1] == "PRIVMSG" and line[0].split("!")[0].lstrip(":") not in bot_list:
+                if line[1] == "PRIVMSG" and line[0].split("!")[0].lstrip(":") not in BOT_LIST:
                     size = len(line)
                     i = 3
                     message = ""
