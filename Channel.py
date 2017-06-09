@@ -1,3 +1,5 @@
+import urllib.request
+import json
 import threading
 import random
 import socket
@@ -19,7 +21,7 @@ class Channel(threading.Thread):
         self.irc = setup_connection(self.streamers)
 
     def run(self):
-        handle_messages(self.irc)
+        handle_messages(self.irc, self.name)
         print("Channel thread ending: %s - %s" % (self.thread_id, self.name))
 
 
@@ -32,7 +34,7 @@ def setup_connection(channels):
     return irc
 
 
-def handle_messages(irc):
+def handle_messages(irc, name):
     reader = ""
     while 1:
         try:
